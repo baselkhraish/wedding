@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('meta_description');
             $table->float('price');
             $table->float('sale_price')->nullable();
-            $table->integer('qty');
+            $table->integer('qty')->nullable();
             // $table->text('note');
             $table->softDeletes();
             $table->timestamps();

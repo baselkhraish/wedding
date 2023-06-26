@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserDetails;
+use App\Models\Vendor;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -22,6 +24,12 @@ class RegisteredUserController extends Controller
     {
         return view('auth.register');
     }
+
+    public function create_vendor(): View
+    {
+        return view('auth.register-vendor');
+    }
+
 
     /**
      * Handle an incoming registration request.
@@ -45,6 +53,39 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+
+        return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function store_vendor(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+
+
+
+        event(new Registered($user));
+
+        Auth::login($user);
+
+        Vendor::create([
+            'user_id' => $user->id,
+        ]);
+
+        UserDetails::create([
+            'user_id' => $user->id,
+        ]);
 
         return redirect(RouteServiceProvider::HOME);
     }

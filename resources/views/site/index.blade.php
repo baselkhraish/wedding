@@ -54,8 +54,8 @@
                             <a href="contact.html" class="nav-item nav-link">اتصل بنا</a>
                         </div>
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="" class="nav-item nav-link">دخول كمستخدم</a>
-                            <a href="" class="nav-item nav-link">دخول كبائع</a>
+                            <a href="{{ route('register') }}" class="nav-item nav-link">دخول كمستخدم</a>
+                            <a href="{{ route('register_vendor') }}" class="nav-item nav-link">دخول كبائع</a>
                         </div>
                     </div>
                 </nav>

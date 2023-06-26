@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Validation\Rules\Exists;
 
 class CategoryController extends Controller
 {
@@ -80,9 +79,15 @@ class CategoryController extends Controller
     public function edit(string $id)
     {
         $category = Category::findOrFail($id);
-        if(Auth::id() === $category->user_id)
+        if(Auth::user()->status === 'admin')
         {
-            return view('admin.category.edit',compact('category'));
+            if(Auth::id() === $category->user_id)
+            {
+                return view('admin.category.edit',compact('category'));
+            }else{
+                return view('errors.notfound');
+            }
+
         }else{
             return view('errors.notfound');
         }
@@ -105,8 +110,8 @@ class CategoryController extends Controller
 
         if($request->hasFile('image')){
             $new_image = rand().rand().time().$request->file('image')->getClientOriginalName();
-            $request->file('image')->move(public_path('uploads/images/categorg/'),$new_image);
-            File::delete(public_path('uploads/images/categorg/'.$del_image));
+            $request->file('image')->move(public_path('uploads/images/category/'),$new_image);
+            File::delete(public_path('uploads/images/category/'.$del_image));
         }
 
         $category->update([
@@ -126,13 +131,13 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
+        if(Auth::user()->status === 'admin')
+        {
         $category = category::findOrFail($id);
-        if(Auth::user()->id === $category->user_id){
             $category->delete();
             return redirect()->back()->with('success','تم الحذف بنجاح');
-        }
-        else{
-            return redirect()->back()->with('success','غير مسموح لك بحذف هذه القسم');
+        }else{
+            return view('errors.notfound');
         }
     }
 
@@ -140,34 +145,42 @@ class CategoryController extends Controller
 
     public function trash()
     {
-        $category = category::onlyTrashed()->orderBy('deleted_at','DESC')->get();
-        return view('admin.category.trash',compact('category'));
+        if(Auth::user()->status === 'admin')
+        {
+            $category = category::onlyTrashed()->orderBy('deleted_at','DESC')->get();
+            return view('admin.category.trash',compact('category'));
+        }else{
+            return view('errors.notfound');
+        }
     }
 
 
 
     public function restore(Request $request, $id)
     {
-        $category = category::onlyTrashed()->findOrFail($id);
-        if(Auth::user()->id === $category->user_id){
-            $category->restore();
-            return redirect()->route('category.trash')->with('success','تم  استرجاع القسم بنجاح');
+        if(Auth::user()->status === 'admin')
+        {
+            $category = category::onlyTrashed()->findOrFail($id);
+                $category->restore();
+                return redirect()->route('admin.category.trash')->with('success','تم  استرجاع القسم بنجاح');
         }else{
-            return redirect()->route('category.trash')->with('success','لا يمكنك التحكم بهذه القسم');
+            return view('errors.notfound');
         }
     }
 
     public function forceDelete(Request $request, $id)
     {
-        $category = category::onlyTrashed()->findOrFail($id);
-        if(Auth::user()->id === $category->user_id){
-            if(file_exists(public_path('uploads/images/category/'.$category->image))){
-                File::delete(public_path('uploads/images/category/'.$category->image));
-            }
+        if(Auth::user()->status === 'admin')
+        {
+            $category = category::onlyTrashed()->findOrFail($id);
+                if(file_exists(public_path('uploads/images/category/'.$category->image))){
+                    File::delete(public_path('uploads/images/category/'.$category->image));
+
             $category->forceDelete();
             return redirect()->route('admin.category.trash')->with('success','تم حذف القسم بنجاح');
-        }else{
-            return redirect()->route('admin.category.trash')->with('success','لا يمكنك التحكم بهذا القسم');
+            }else{
+                return view('errors.notfound');
+            }
         }
     }
 }

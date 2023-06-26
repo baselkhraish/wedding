@@ -12,4 +12,8 @@ class Vendor extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+
+    function user() {
+        return $this->belongsTo(User::class)->withDefault();
+    }
 }

@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class UserDetails extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $guarded=[];
 
-    function vendor() {
-        return $this->belongsTo(Vendor::class);
+    function user() {
+        return $this->belongsTo(User::class)->withDefault();
     }
 }
