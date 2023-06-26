@@ -179,7 +179,7 @@
                             <div class="card-body pt-0">
                                 <!--begin::Form-->
                                 <form id="kt_ecommerce_settings_general_store" class="form"
-                                    action="{{ route('admin.setting.update2', $setting2->id) }}" method="post">
+                                    action="{{ route('admin.setting.update2', $setting2->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('put')
 
@@ -203,7 +203,7 @@
                                                 class="form-control form-control-solid   @error('category_id') is-invalid @enderror">
                                                 <option disabled selected>--اختر قسم--</option>
                                                 @foreach ($categories as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    <option value="{{ $item->id }}"  {{ $setting2->category_id == $item->id ? 'selected' : '' }} >{{ $item->name }}</option>
                                                 @endforeach
                                             </select>
                                             @error('category_id')
@@ -243,7 +243,7 @@
                                             <label class="fs-6 fw-bold form-label mt-3">
                                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
                                                     title="Set keywords for the store separated by a comma."></i>
-                                                <span>صورة البائع</span>
+                                                <span>صورة المحل</span>
                                             </label>
                                             <!--end::Label-->
                                         </div>
@@ -284,35 +284,30 @@
                                     <!--end::description-->
 
 
-                                        <!--begin::meta_description-->
-                                        <div class="row fv-row mb-7">
-                                            <div class="col-md-2 text-md-end">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold form-label mt-3">
-                                                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                        title="Set the store owner's meta_description"></i>
-                                                    <span class="required">وصف المحل</span>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <div class="col-md-9">
-                                                <!--begin::Input-->
-                                                <textarea name="meta_description" class="form-control  @error('meta_description') is-invalid @enderror"
-                                                    id="exampleFormControlTextarea1" rows="8">{{ old('meta_description', $setting2->meta_description) }}</textarea>
-                                                @error('meta_description')
-                                                    <div class="invalid-feedback">
-                                                        {{ $message }}
-                                                    </div>
-                                                @enderror
-                                                <!--end::Input-->
-                                            </div>
+                                    <!--begin::meta_description-->
+                                    <div class="row fv-row mb-7">
+                                        <div class="col-md-2 text-md-end">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-bold form-label mt-3">
+                                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
+                                                    title="Set the store owner's meta_description"></i>
+                                                <span class="required">وصف المحل</span>
+                                            </label>
+                                            <!--end::Label-->
                                         </div>
-                                        <!--end::meta_description-->
-
-
-
-
-
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                            <textarea name="meta_description" class="form-control  @error('meta_description') is-invalid @enderror"
+                                                id="exampleFormControlTextarea1" rows="8">{{ old('meta_description', $setting2->meta_description) }}</textarea>
+                                            @error('meta_description')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                            <!--end::Input-->
+                                        </div>
+                                    </div>
+                                    <!--end::meta_description-->
 
 
                                     <!--begin::status-->
@@ -358,7 +353,7 @@
                                             <!--begin::Input-->
                                             <input type="file" class="form-control form-control-solid"
                                                 name="identity_image" data-kt-ecommerce-settings-type="tagify" />
-                                            <img src="{{ asset('uploads/images/identity_image/' . $setting2->identity_image) }}"
+                                            <img src="{{ asset('uploads/images/identity/' . $setting2->identity_image) }}"
                                                 width="50" alt="">
                                             <!--end::Input-->
                                         </div>

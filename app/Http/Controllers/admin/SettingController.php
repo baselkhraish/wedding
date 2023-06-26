@@ -105,10 +105,12 @@ class SettingController extends Controller
         return redirect()->back()->with('success','تم التعديل  بنجاح');
     }
 
+
     public function setting(Request $request, string $id)
     {
+        // dd($request->all());
         $request->validate([
-            'image'=>'nullable',
+            // 'image'=>'nullable',
             'category_id'=>'required'
         ]);
 
@@ -126,15 +128,35 @@ class SettingController extends Controller
                 $request->file('image')->move(public_path('uploads/images/vendor/'),$new_image);
                 File::delete(public_path('uploads/images/vendor/'.$del_image));
             }
-        } else {
+        }
+         else {
             $new_image = rand().rand().time().$request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('uploads/images/vendor/'),$new_image);
         }
 
 
+        if (File::exists(public_path('uploads/images/identity/'))) {
+            $identity_image = $setting2->identity_image;
+            $del_image = $identity_image;
+
+            if($request->hasFile('identity_image')){
+                $identity_image = rand().rand().time().$request->file('identity_image')->getClientOriginalName();
+                $request->file('identity_image')->move(public_path('uploads/images/identity/'),$identity_image);
+                File::delete(public_path('uploads/images/identity/'.$del_image));
+            }
+        } else {
+            $identity_image = rand().rand().time().$request->file('identity_image')->getClientOriginalName();
+            $request->file('identity_image')->move(public_path('uploads/images/identity/'),$identity_image);
+        }
+
+
         $setting2->update([
-            'phone'=>$request->phone,
-            'image' => $new_image,
+            'category_id'=>$request->category_id,
+            'name'=>$request->name,
+            'image'=> $new_image,
+            'description'=>$request->description,
+            'meta_description'=>$request->meta_description,
+            'identity_image'=>$identity_image,
         ]);
 
 
