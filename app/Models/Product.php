@@ -16,4 +16,5 @@ class Product extends Model
     function vendor() {
         return $this->belongsTo(Vendor::class);
     }
+    
 }

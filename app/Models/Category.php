@@ -16,4 +16,7 @@ class Category extends Model
     function user() {
         return $this->belongsTo(User::class)->withDefault();
     }
+    function vendor(){
+        return $this->hasMany(Vendor::class);
+    }
 }

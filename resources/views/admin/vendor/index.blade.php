@@ -13,6 +13,14 @@
             <div class="col-xl-12">
                 <!--begin::Tables Widget 9-->
                 <div class="card card-xl-stretch mb-5 mb-xl-8">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="card-header border-0 pt-5">
+                            <form action="" class="d-flex justify-content-between align-items-center">
+                                <input type="text" name="" id="" placeholder="ابحث عن تاجر"  class="form-control">
+                                <button class="btn btn-primary ml-3">بحث</button>
+                            </form>
+                        </div>
+                    </div>
                     <!--begin::Header-->
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-header border-0 pt-5">
@@ -40,10 +48,10 @@
                                     <tr class="fw-bolder text-muted">
                                         <th class="w-25px">#</th>
                                         <th class="min-w-200px">اسم التاجر</th>
+                                        <th class="min-w-200px">اسم المحل</th>
                                         <th class="min-w-200px">صورة المحل</th>
                                         <th class="min-w-200px">اسم القسم</th>
                                         <th class="min-w-150px">الحالة</th>
-                                        <th class="min-w-150px">تاريخ الإضافة</th>
                                         <th class="min-w-100px text-end">الحركات</th>
                                     </tr>
                                 </thead>
@@ -58,6 +66,9 @@
                                         <td>
                                             <p class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->user->name }}</p>
                                         </td>
+                                        <td>
+                                            <p class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->name }}</p>
+                                        </td>
 
                                         <td>
                                             <p class="text-dark fw-bolder text-hover-primary fs-6"><img src="{{ asset('uploads/images/vendor/'.$item->image) }}" alt="{{ $item->name }}" style="width: 50px;"></p>
@@ -66,25 +77,22 @@
                                         <td>
                                             <div class="d-flex align-items-center">
                                                     <p
-                                                        class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->name }}</p>
+                                                        class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->category->name }}</p>
                                             </div>
                                         </td>
 
                                         <td>
                                             <div class="d-flex align-items-center">
                                                     <p class="text-dark fw-bolder text-hover-primary fs-6">
-                                                        @if ($item->status == 'active')
-                                                            <span class="text-success">فعًال</span>
-                                                        @else
+                                                        @if ($item->status == 'accepted')
+                                                            <span class="text-success">مقبول</span>
+                                                        @elseif($item->status == 'canceled')
                                                             <span class="text-danger">موقوف</span>
+                                                        @else
+                                                         <span class="text-warning">بالانتظار</span>
                                                         @endif
                                                     </p>
                                             </div>
-                                        </td>
-
-                                        <td>
-                                            <p
-                                                class="text-dark fw-bolder text-hover-primary d-block fs-6">{{ $item->created_at->format('Y-m-d') }}</p>
                                         </td>
 
                                         <td>

@@ -227,8 +227,6 @@
 		responsiveClass: 'owl-responsive',
 		dragClass: 'owl-drag',
 		itemClass: 'owl-item',
-		stageClass: 'owl-stage',
-		stageOuterClass: 'owl-stage-outer',
 		grabClass: 'owl-grab'
 	};
 
@@ -1252,10 +1250,6 @@
 		if (event !== undefined) {
 			event.stopPropagation();
 
-			// Catch only owl-stage transitionEnd event
-			if ((event.target || event.srcElement || event.originalTarget) !== this.$stage.get(0)) {
-				return false;
-			}
 		}
 
 		this.leave('animating');

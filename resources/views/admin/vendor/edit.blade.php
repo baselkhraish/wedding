@@ -11,7 +11,7 @@
             <form action="{{ route('admin.category.update',$category->id) }}" method="post" id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row">
                 @csrf
                 @method('put')
-                @include('admin.category._form', [
+                @include('admin.vendor._form', [
                     'button_lable' => 'حفظ التغييرات',
                 ])
             </form>

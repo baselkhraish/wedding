@@ -8,7 +8,7 @@
         <div id="kt_content_container" class="container-xxl">
 
 
-            <form action="{{ route('admin.product.update',$product->id) }}" method="post" id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row">
+            <form action="{{ route('admin.product.update',$product->id) }}" method="post" id="kt_ecommerce_add_product_form" class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
                 @csrf
                 @method('put')
                 @include('admin.product._form', [

@@ -91,6 +91,9 @@
     </div>
     <!-- Topbar End -->
 
+
+    
+
     @yield('content')
 
 
@@ -98,7 +101,7 @@
 
 
     <!-- Footer Start -->
-    <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+    <div class="container-fluid bg-secondary text-dark">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pl-3 pl-xl-5">
                 <a href="" class="text-decoration-none">

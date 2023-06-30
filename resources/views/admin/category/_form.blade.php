@@ -24,8 +24,8 @@
                     data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                     <i class="bi bi-pencil-fill fs-7"></i>
                     <!--begin::Inputs-->
-                    <input type="file" name="image" accept=".png, .jpg, .jpeg" value="{{ $category->image }}" />
-                    <input type="hidden" name="image_remove" />
+                    <input type="file" name="image" value="{{ $category->image }}" />
+                    <input type="hidden"/>
                     <!--end::Inputs-->
                 </label>
                 <!--end::Label-->

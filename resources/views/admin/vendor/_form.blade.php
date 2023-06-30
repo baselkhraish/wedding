@@ -6,7 +6,7 @@
         <div class="card-header">
             <!--begin::Card title-->
             <div class="card-title">
-                <h2>صورة القسم</h2>
+                <h2>صورة البائع</h2>
             </div>
             <!--end::Card title-->
         </div>
@@ -15,7 +15,7 @@
         <div class="card-body text-center pt-0">
             <!--begin::Image input-->
             <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true"
-                    style="background-image: url({{ asset('uploads/images/category/'.$category->image) }})">
+                    style="background-image: url({{ asset('uploads/images/vendor/'.$vendor->image) }})">
                 <!--begin::Preview existing image-->
                 <div class="image-input-wrapper w-150px h-150px"></div>
                 <!--end::Preview existing image-->
@@ -24,7 +24,7 @@
                     data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change image">
                     <i class="bi bi-pencil-fill fs-7"></i>
                     <!--begin::Inputs-->
-                    <input type="file" name="image" accept=".png, .jpg, .jpeg" value="{{ $category->image }}" />
+                    <input type="file" name="image" accept=".png, .jpg, .jpeg" value="{{ $vendor->image }}" />
                     <input type="hidden" name="image_remove" />
                     <!--end::Inputs-->
                 </label>
@@ -72,9 +72,9 @@
         <div class="card-body pt-0">
             <!--begin::Select2-->
             <select name="status" class="form-control  @error('status') is-invalid @enderror">
-                <option value="" selected disabled>--ادخل حالة القسم--</option>
-                <option value="active" {{ $category->status == 'active' ? 'selected' : '' }}>فعًال</option>
-                <option value="not_active" {{ $category->status == 'not_active' ? 'selected' : '' }}>موقوف</option>
+                <option value="" selected disabled>--ادخل حالة البائع--</option>
+                <option value="active" {{ $vendor->status == 'active' ? 'selected' : '' }}>فعًال</option>
+                <option value="not_active" {{ $vendor->status == 'not_active' ? 'selected' : '' }}>موقوف</option>
             </select>
             @error('status')
                 <div class="invalid-feedback">
@@ -83,7 +83,7 @@
             @enderror
             <!--end::Select2-->
             <!--begin::Description-->
-            <div class="text-muted fs-7 mt-2"><span class="text-danger">ملاحظة</span> عند توقيف القسم سيتم الغاء تنشيط كل التجار و المنتجات المتعلقة في هذا القسم</div>
+            <div class="text-muted fs-7 mt-2"><span class="text-danger">ملاحظة</span> عند توقيف البائع سيتم الغاء تنشيط كل التجار و المنتجات المتعلقة في هذا البائع</div>
             <!--end::Description-->
         </div>
         <!--end::Card body-->
@@ -100,7 +100,7 @@
         <!--begin::Card header-->
         <div class="card-header">
             <div class="card-title">
-                <h2>الأقسام</h2>
+                <h2>البائعين</h2>
             </div>
         </div>
         <!--end::Card header-->
@@ -111,11 +111,11 @@
             <!--begin::Input group-->
             <div class="mb-10 fv-row">
                 <!--begin::Label-->
-                <label class="required form-label">اسم القسم</label>
+                <label class="required form-label">اسم البائع</label>
                 <!--end::Label-->
                 <!--begin::Input-->
                 <input type="text" name="name" class="form-control mb-2  @error('name') is-invalid @enderror"
-                    value="{{ old('name', $category->name) }}" />
+                    value="{{ old('name', $vendor->name) }}" />
                 @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -135,11 +135,11 @@
                 <!--begin::Input group-->
                 <div>
                     <!--begin::Label-->
-                    <label class="form-label" for="exampleFormControlTextarea1">وصف القسم</label>
+                    <label class="form-label" for="exampleFormControlTextarea1">وصف البائع</label>
                     <!--end::Label-->
                     <!--begin::Editor-->
                     <div class="form-group">
-                        <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="8">{{ old('description', $category->description) }}</textarea>
+                        <textarea name="description" class="form-control  @error('description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="8">{{ old('description', $vendor->description) }}</textarea>
                         @error('description')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -160,12 +160,12 @@
                 <!--begin::Input group-->
                 <div>
                     <!--begin::Label-->
-                    <label class="form-label" for="exampleFormControlTextarea1">وصف القسم للبحث</label>
+                    <label class="form-label" for="exampleFormControlTextarea1">وصف البائع للبحث</label>
                     <!--end::Label-->
                     <!--begin::Editor-->
                     <div class="form-group">
                         <textarea name="meta_description" class="form-control @error('meta_description') is-invalid @enderror" id="exampleFormControlTextarea1" rows="3"
-                            placeholder="Meta description">{{ old('meta_description', $category->meta_description) }}</textarea>
+                            placeholder="Meta description">{{ old('meta_description', $vendor->meta_description) }}</textarea>
                             @error('meta_description')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -186,10 +186,10 @@
 
     <div class="d-flex justify-content-start">
         <!--begin::Button-->
-        <a href="{{ route('admin.category.index') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">إلغاء</a>
+        <a href="{{ route('admin.vendor.index') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">إلغاء</a>
         <!--end::Button-->
         <!--begin::Button-->
-        <button type="submit" id="kt_ecommerce_add_category_submit" class="btn btn-primary">
+        <button type="submit" id="kt_ecommerce_add_vendor_submit" class="btn btn-primary">
             <span class="indicator-label">{{ $button_lable ?? 'حفظ' }}</span>
         </button>
         <!--end::Button-->

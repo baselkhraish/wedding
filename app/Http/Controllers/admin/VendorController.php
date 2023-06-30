@@ -16,7 +16,7 @@ class VendorController extends Controller
     {
         if(Auth::user()->status === 'admin')
         {
-            $vendor = Vendor::with('user')->orderby('created_at','desc')->paginate(5);
+            $vendor = Vendor::with('user','category')->orderby('created_at','desc')->paginate(5);
             return view('admin.vendor.index',compact('vendor'));
         }else{
             return view('errors.notfound');
@@ -29,7 +29,8 @@ class VendorController extends Controller
      */
     public function create()
     {
-        //
+        $vendor = new Vendor();
+        return view('admin.vendor.create',compact('vendor'));
     }
 
     /**
@@ -37,7 +38,7 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','إنشاء قسم')
+@section('title','إنشاء بائع')
 @section('content')
 
     <!--begin::Post-->
@@ -8,9 +8,9 @@
         <div id="kt_content_container" class="container-xxl">
 
 
-            <form action="{{ route('admin.category.store') }}" method="post" id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
+            <form action="{{ route('admin.vendor.store') }}" method="post" id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row" enctype="multipart/form-data">
                 @csrf
-                @include('admin.category._form', [
+                @include('admin.vendor._form', [
                     'button_lable' => 'إضافة',
                 ])
             </form>

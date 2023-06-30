@@ -148,7 +148,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        
+
         $product = product::findOrFail($id);
 
         $user_id = Auth::id();

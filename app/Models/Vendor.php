@@ -16,4 +16,12 @@ class Vendor extends Model
     function user() {
         return $this->belongsTo(User::class)->withDefault();
     }
+
+    function category() {
+        return $this->belongsTo(Category::class)->withDefault();
+    }
+
+    function product() {
+        return $this->hasMany(Product::class);
+    }
 }
