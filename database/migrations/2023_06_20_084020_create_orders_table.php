@@ -18,10 +18,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('product_id');
-            $table->date('start_time');
-            $table->date('end_time');
-            $table->date('time');
-            $table->integer('qty');
+            $table->date('reservation_day');
+            // $table->integer('qty');
             $table->float('price');
             $table->float('total_price');
             $table->enum('status',['accepted','preparing','canceled']);

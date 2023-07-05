@@ -24,4 +24,8 @@ class Vendor extends Model
     function product() {
         return $this->hasMany(Product::class);
     }
+
+    function note() {
+        return $this->hasMany(Note::class);
+    }
 }

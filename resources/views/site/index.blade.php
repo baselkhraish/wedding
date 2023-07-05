@@ -124,7 +124,7 @@
                     </a>
                     <div class="d-flex justify-content-between align-items-center p-3">
                         <div><a href="{{ route('category.vendor',$item->id) }}" class="btn btn-primary">مشاهدة كل البائعين</a></div>
-                        <div><a href="{{ route('category.product',$item->id) }}" class="btn btn-primary">مشاهدة كل المنتجات</a></div>
+                        <div><a href="{{ route('category.product',$item->id) }}" class="btn btn-primary">مشاهدة كل الخدمات</a></div>
                     </div>
                     <a href="{{ route('category.product',$item->id) }}" class="mt-3">
                         <h5 class="font-weight-semi-bold m-0 text-center">{{ $item->name }}</h5>

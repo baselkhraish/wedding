@@ -20,11 +20,12 @@ class ProductController extends Controller
 
     public function index()
     {
-        if(Auth::user()->status === 'vendor')
+        $user_id = Auth::id();
+        $vendor = Vendor::where('user_id',$user_id)->first();
+        $vendor_id = $vendor->id;
+
+        if($vendor->status === 'accepted')
         {
-            $user_id = Auth::id();
-            $vendor = Vendor::where('user_id',$user_id)->first();
-            $vendor_id = $vendor->id;
             $products= Product::with('vendor')->orderBy('id','desc')->where('vendor_id',$vendor_id)->paginate(7);
             return view('admin.product.index',compact('products'));
         }else{
@@ -37,13 +38,16 @@ class ProductController extends Controller
      */
     public function create()
     {
-        if(Auth::user()->status === 'vendor')
+        $user_id = Auth::id();
+        $vendor = Vendor::where('user_id',$user_id)->first();
+        if($vendor->status === 'accepted')
         {
         $product = new Product();
         return view('admin.product.create',compact('product'));
         }else{
             return view('errors.notfound');
         }
+
     }
 
     /**
@@ -91,12 +95,12 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
 
-        if(Auth::user()->status === 'vendor')
-        {
-            $user_id = Auth::id();
-            $vendor = Vendor::where('user_id',$user_id)->first();
-            $vendor_id = $vendor->id;
+        $user_id = Auth::id();
+        $vendor = Vendor::where('user_id',$user_id)->first();
+        $vendor_id = $vendor->id;
 
+        if($vendor->status === 'accepted')
+        {
             if($product->vendor_id === $vendor_id)
             {
                 return view('admin.product.edit',compact('product'));
@@ -106,7 +110,6 @@ class ProductController extends Controller
         }else{
             return view('errors.notfound');
         }
-
 
     }
 
@@ -168,8 +171,17 @@ class ProductController extends Controller
 
     public function trash()
     {
-        $product = product::onlyTrashed()->orderBy('deleted_at','DESC')->get();
+        if(Auth::user()->status === 'vendor')
+        {
+            $user_id = Auth::id();
+            $vendor = Vendor::where('user_id',$user_id)->first();
+            $vendor_id = $vendor->id;
+
+        $product = product::onlyTrashed()->orderBy('deleted_at','DESC')->where('vendor_id',$vendor_id)->get();
         return view('admin.product.trash',compact('product'));
+        }else{
+            return view('errors.notfound');
+        }
     }
 
 

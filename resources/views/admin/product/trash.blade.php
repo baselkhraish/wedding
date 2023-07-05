@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','المنتجات سلة المحذوفات')
+@section('title','الخدمات سلة المحذوفات')
 @section('content')
 
 
@@ -17,12 +17,12 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">المنتجات المحذوفة</span>
+                                <span class="card-label fw-bolder fs-3 mb-1">الخدمات المحذوفة</span>
                                 <span class="text-muted mt-3 fw-bold fs-7">{{ $product->count() }} منتج</span>
                             </h3>
                         </div>
                         <div>
-                            <a href="{{ route('admin.product.index') }}" class="btn btn-sm btn-primary">المنتجات</a>
+                            <a href="{{ route('admin.product.index') }}" class="btn btn-sm btn-primary">الخدمات</a>
                         </div>
                     </div>
 

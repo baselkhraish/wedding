@@ -129,7 +129,7 @@ class SettingController extends Controller
                 File::delete(public_path('uploads/images/vendor/'.$del_image));
             }
         }
-         else {
+        else {
             $new_image = rand().rand().time().$request->file('image')->getClientOriginalName();
             $request->file('image')->move(public_path('uploads/images/vendor/'),$new_image);
         }
@@ -144,7 +144,8 @@ class SettingController extends Controller
                 $request->file('identity_image')->move(public_path('uploads/images/identity/'),$identity_image);
                 File::delete(public_path('uploads/images/identity/'.$del_image));
             }
-        } else {
+        }
+        else {
             $identity_image = rand().rand().time().$request->file('identity_image')->getClientOriginalName();
             $request->file('identity_image')->move(public_path('uploads/images/identity/'),$identity_image);
         }

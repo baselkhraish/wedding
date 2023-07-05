@@ -24,6 +24,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('siteasset/css/style.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 <body dir="rtl">
@@ -92,7 +93,7 @@
     <!-- Topbar End -->
 
 
-    
+
 
     @yield('content')
 
@@ -186,6 +187,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('siteasset/js/main.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

@@ -68,7 +68,9 @@
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
-            <div class="col-lg-5 pb-5">
+
+
+            <div class="col-lg-4 pb-5">
                 <div id="product-carousel" class="carousel">
                     <div class="carousel-inner border">
                         <div class="carousel-item active">
@@ -78,7 +80,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-7 pb-5">
+            <div class="col-lg-4 pb-5">
                 <h3 class="font-weight-semi-bold text-right">{{ $product->name }}</h3>
 
                 @if($product->sale_price === null)
@@ -89,22 +91,7 @@
                 @endif
 
                 <p class="mb-4 text-right">{{ $product->description }}.</p>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity ml-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" >
-                            <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control bg-secondary text-center" value="1">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart ml-1"></i> Add To Cart</button>
-                </div>
+
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 ml-2">مشاركة في :</p>
                     <div class="d-inline-flex">
@@ -121,6 +108,22 @@
                             <i class="fab fa-pinterest"></i>
                         </a>
                     </div>
+                </div>
+            </div>
+            <div class="col-lg-4 pb-5">
+                <div>
+                    <table class="table">
+                        <form action="">
+                            <tr><td colspan="2" class="text-center" >للحجز من هنا</td></tr>
+                            <tr>
+                                <th  scope="col" class="text-right">يوم الحجز</th>
+                                <td class="text-right"><input type="date" name="start_date"></td>
+                            </tr>
+
+                            <tr><td colspan="2" class="text-center" ><button type="submit" class="btn btn-primary">احجز الآن</button></td></tr>
+
+                        </form>
+                    </table>
                 </div>
             </div>
         </div>

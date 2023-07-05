@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','المنتجات')
+@section('title','الخدمات')
 @section('content')
 
 
@@ -17,7 +17,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bolder fs-3 mb-1">المنتجات</span>
+                                <span class="card-label fw-bolder fs-3 mb-1">الخدمات</span>
                                 <span class="text-muted mt-1 fw-bold fs-7">{{ $products->count() }} منتج</span>
                             </h3>
                         </div>
