@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\Note;
 use App\Models\User;
+use App\Models\UserDetails;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,7 +50,10 @@ class VendorController extends Controller
     public function show(string $id)
     {
         $vendor = Vendor::findOrFail($id);
-        return view('admin.vendor.show',compact('vendor'));
+        $vendor_id = $vendor->user_id;
+        $user_id = User::where('id',$vendor_id)->first();
+        $user_details = UserDetails::where('user_id',$user_id->id)->first();
+        return view('admin.vendor.show',compact('vendor','user_details'));
 
     }
 
@@ -86,7 +90,7 @@ class VendorController extends Controller
         ]);
 
         if($request->note == null){
-            
+
         }else{
         Note::create([
             'vendor_id'=>$vendor->id,

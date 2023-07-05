@@ -3,10 +3,16 @@
 namespace App\Http\Controllers\site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReservationRequest;
 use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\UserDetails;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 
 class SiteController extends Controller
 {
@@ -57,7 +63,41 @@ class SiteController extends Controller
 
     function product_details($id){
         $product = Product::findOrFail($id);
-        return view('site.product-detail',compact('product'));
+
+        $reservation = Order::orderby('date')->where('product_id',$product->id)->where('status','accepted')->get();
+
+        return view('site.product-detail',compact('product','reservation'));
+    }
+
+    function reservation(ReservationRequest $request) {
+        // $order = new Order();
+        $enteredDate = Carbon::createFromFormat('Y-m-d', $request->input('date'));
+
+        $exists = Order::whereDate('date', $enteredDate)->where('product_id',$request->product_id)->where('status','accepted')->exists();
+
+        if ($exists) {
+            return redirect()->back()->with('success','عذراً , هذا اليوم محجوز مسبقاً');
+        } else {
+            if ($enteredDate->isToday()) {
+                return redirect()->back()->with('success','عذراً غير مسموح حجز اليوم');
+            } elseif ($enteredDate->isFuture()) {
+                Order::create([
+                    'user_id'=>Auth::id(),
+                    'product_id' => $request->product_id,
+                    'vendor_id'=> $request->vendor_id,
+                    'date' => $request->date,
+                    'phone' => $request->phone,
+                    'price'=>$request->price,
+                ]);
+                return redirect()->back()->with('success','تم إرسال طلبك سنتواصل معك قريبا');
+            } elseif ($enteredDate->isPast()) {
+                return redirect()->back()->with('success','التاريخ قديم');
+            } else {
+                return redirect()->back()->with('success','يرجى ادخال تاريخ صحيح');
+            }
+        }
+
+
     }
 
 }

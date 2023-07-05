@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-//         user_id, product_id, start_time, end_time, time, qty, price, total_price,
-//   status[accepted, preparing, canceled]
-
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('product_id');
-            $table->date('reservation_day');
-            // $table->integer('qty');
+            $table->foreignId('vendor_id');
+            $table->date('date');
             $table->float('price');
-            $table->float('total_price');
-            $table->enum('status',['accepted','preparing','canceled']);
+            $table->float('total_price')->nullable();
+            $table->enum('status',['accepted','pending','canceled'])->default('pending');
+            $table->text('phone');
             $table->softDeletes();
             $table->timestamps();
         });

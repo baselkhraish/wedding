@@ -13,8 +13,16 @@
         </div>
         <a href="contact.html" class="nav-item nav-link">اتصل بنا</a>
     </div>
-    <div class="navbar-nav mr-auto py-0">
-        <a href="{{ route('register') }}" class="nav-item nav-link">دخول كمستخدم</a>
-        <a href="{{ route('register_vendor') }}" class="nav-item nav-link">دخول كبائع</a>
-    </div>
+    @if(Auth::check())
+        <div class="navbar-nav mr-auto py-0">
+            <a href="{{ route('admin.index') }}" class="nav-item nav-link"><i class="fas fa-user"></i> <b>لوحة التحكم</b> </a>
+        </div>
+
+    @else
+        <div class="navbar-nav mr-auto py-0">
+            <a href="{{ route('register') }}" class="nav-item nav-link">دخول كمستخدم</a>
+            <a href="{{ route('register_vendor') }}" class="nav-item nav-link">دخول كبائع</a>
+        </div>
+
+    @endif
 </div>

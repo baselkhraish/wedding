@@ -68,18 +68,15 @@
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
         <div class="row px-xl-5">
-
-
             <div class="col-lg-4 pb-5">
                 <div id="product-carousel" class="carousel">
                     <div class="carousel-inner border">
                         <div class="carousel-item active">
-                            <img class="w-100 h-100" src="{{ asset('uploads/images/product/'.$product->image) }}" alt="Image">
+                            <img class="w-100 h-100" src="{{ asset('uploads/images/product/'.$product->image) }}" alt="Image" style="width: 400px !important; height: 450px !important; object-fit: contain">
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-4 pb-5">
                 <h3 class="font-weight-semi-bold text-right">{{ $product->name }}</h3>
 
@@ -112,19 +109,76 @@
             </div>
             <div class="col-lg-4 pb-5">
                 <div>
+
+
                     <table class="table">
-                        <form action="">
+                        <form action="{{ route('reservation') }}" method="POST">
+                            @csrf
+                            @if($product->sale_price === null)
+                                <input type="hidden" name="price" value="{{ $product->price }}">
+                            @else
+                            <input type="hidden" name="price" value="{{ $product->sale_price }}">
+                            @endif
+
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="vendor_id" value="{{ $product->vendor->id }}">
                             <tr><td colspan="2" class="text-center" >للحجز من هنا</td></tr>
                             <tr>
                                 <th  scope="col" class="text-right">يوم الحجز</th>
-                                <td class="text-right"><input type="date" name="start_date"></td>
+                                <td class="text-right">
+                                    <input type="date" name="date" class="form-control  @error('date') is-invalid @enderror" value="{{ old('date') }}">
+                                    @error('date')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </td>
+                            </tr>
+                            <tr>
+                                <th  scope="col" class="text-right">رقم الهاتف للتواصل</th>
+                                <td class="text-right">
+                                    <input type="text" name="phone" placeholder="XXXXXXXX" value="{{ old('phone') }}"class="form-control  @error('phone') is-invalid @enderror">
+                                    @error('phone')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </td>
                             </tr>
 
                             <tr><td colspan="2" class="text-center" ><button type="submit" class="btn btn-primary">احجز الآن</button></td></tr>
-
                         </form>
                     </table>
+
                 </div>
+            </div>
+        </div>
+
+        <div class="row px-xl-5">
+            <div class="col-lg-12 pb-5">
+                <table class="table mt-5">
+                    <thead>
+                        <tr>
+                            <th class="text-right">التاريخ</th>
+                            <th class="text-right">الحالة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($reservation as $item)
+                            <tr>
+                                <td class="text-right">{{ $item->date }}</td>
+                                <td class="text-right">
+                                    @if($item->status === 'accepted')
+                                        <p class="text-success">محجوز</p>
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+
+
+                    </tbody>
+                </table>
+
             </div>
         </div>
 

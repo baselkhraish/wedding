@@ -215,6 +215,27 @@
                             <!--end::Input group-->
                         </div>
 
+                        <!--begin::status shop-->
+                        <div class="card-body pt-0 pb-0">
+                            <!--begin::Input group-->
+                            <div class="mb-10 fv-row">
+                                <!--begin::Input group-->
+                                <div>
+                                    <!--begin::Label-->
+                                    <label class="form-label" for="exampleFormControlTextarea1">رقم الهاتف</label>
+                                    <!--end::Label-->
+                                    <!--begin::Editor-->
+                                    <div class="form-group">
+                                        <input type="text" disabled class="form-control mb-2"
+                                            value="{{ $user_details->phone }}" />
+                                    </div>
+                                    <!--end::Editor-->
+                                </div>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+
                     </div>
                     <!--end::General options-->
 

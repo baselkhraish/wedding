@@ -30,6 +30,11 @@ Route::get('/products',[SiteController::class,'products'])->name('products');
 
 Route::get('/product/{product}',[SiteController::class,'product_details'])->name('product_details');
 
+// Reservation
+Route::post('/reservation',[SiteController::class,'reservation'])->name('reservation')->middleware('auth');
+
+
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

@@ -42,5 +42,9 @@ class User extends Authenticatable
         return $this->belongsTo(Vendor::class,'user_id');
     }
 
+    function userDetails() {
+        return $this->belongsTo(UserDetails::class,'user_id');
+    }
+
 
 }

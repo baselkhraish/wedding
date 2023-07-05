@@ -11,50 +11,15 @@
             data-kt-swapper-mode="prepend"
             data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}">
             <!--begin::Menu-->
-            <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch"
-                id="#kt_header_menu" data-kt-menu="true">
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item here show menu-lg-down-accordion me-lg-1">
+            <div class="menu menu-lg-rounded menu-column menu-lg-row menu-state-bg menu-title-gray-700 menu-state-title-primary menu-state-icon-primary menu-state-bullet-primary menu-arrow-gray-400 fw-bold my-5 my-lg-0 align-items-stretch">
+
+                {{-- <div class="menu-item here show menu-lg-down-accordion me-lg-1">
                     <span class="menu-link py-3">
-                        <span class="menu-title">Dashboards</span>
-                        <span class="menu-arrow d-lg-none"></span>
+                        <a class="menu-title" href="{{ route('admin.order') }}">الطلبات</a>
                     </span>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item menu-lg-down-accordion me-lg-1">
-                    <span class="menu-link py-3">
-                        <span class="menu-title">Crafted</span>
-                        <span class="menu-arrow d-lg-none"></span>
-                    </span>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item menu-lg-down-accordion me-lg-1">
-                    <span class="menu-link py-3">
-                        <span class="menu-title">Apps</span>
-                        <span class="menu-arrow d-lg-none"></span>
-                    </span>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item menu-lg-down-accordion me-lg-1">
-                    <span class="menu-link py-3">
-                        <span class="menu-title">Layouts</span>
-                        <span class="menu-arrow d-lg-none"></span>
-                    </span>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item menu-lg-down-accordion me-lg-1">
-                    <span class="menu-link py-3">
-                        <span class="menu-title">Resources</span>
-                        <span class="menu-arrow d-lg-none"></span>
-                    </span>
-                </div>
-                <div data-kt-menu-trigger="click" data-kt-menu-placement="bottom-start"
-                    class="menu-item menu-lg-down-accordion me-lg-1">
-                    <span class="menu-link py-3">
-                        <span class="menu-title">Mega Menu</span>
-                        <span class="menu-arrow d-lg-none"></span>
-                    </span>
-                </div>
+                </div> --}}
+
+
             </div>
             <!--end::Menu-->
         </div>
@@ -627,11 +592,9 @@
                         <div class="d-flex flex-column">
                             <div class="fw-bolder d-flex align-items-center fs-5">
                                 {{ Auth::user()->name }}
-                                <span
-                                    class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">موثق</span>
                             </div>
                             <a href="#"
-                                class="fw-bold text-muted text-hover-primary fs-7">admin@gmail.com</a>
+                                class="fw-bold text-muted text-hover-primary fs-7">{{ Auth::user()->email }}</a>
                         </div>
                         <!--end::Username-->
                     </div>
@@ -647,7 +610,11 @@
                         target="_blank">الموقع العام</a>
                 </div>
 
-
+                <!--begin::Menu item-->
+                <div class="menu-item px-5">
+                    <a href="{{ route('admin.setting.edit',Auth::user()->id) }}" class="menu-link px-5"
+                    >الإعدادات</a>
+                </div>
 
                 <!--begin::Menu separator-->
                 <div class="separator my-2"></div>

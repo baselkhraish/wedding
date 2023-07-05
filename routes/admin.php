@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SettingController;
 use App\Http\Controllers\admin\VendorController;
@@ -34,6 +35,16 @@ Route::prefix('/admin')->middleware(['auth','CheckUserStatusMiddleware'])->name(
     // Setting
     Route::resource('setting', SettingController::class);
     Route::put('/{setting}/update2',[SettingController::class,'setting'])->name('setting.update2');
+
+    // Order
+    Route::get('order/',[OrderController::class,'order'])->name('order');
+
+    Route::get('order_admin/',[OrderController::class,'order_admin'])->name('order_admin');
+
+    Route::get('order_vendor/',[OrderController::class,'order_vendor'])->name('order_vendor');
+
+    Route::get('order/{id}',[OrderController::class,'edit'])->name('order.edit');
+    Route::put('order/update/{id}',[OrderController::class,'update'])->name('order.update');
 
 });
 

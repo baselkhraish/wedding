@@ -12,4 +12,13 @@ class Order extends Model
     use SoftDeletes;
 
     protected $guarded=[];
+    function product() {
+        return $this->belongsTo(Product::class);
+    }
+    function user() {
+        return $this->belongsTo(User::class);
+    }
+    function vendor() {
+        return $this->belongsTo(Vendor::class);
+    }
 }
