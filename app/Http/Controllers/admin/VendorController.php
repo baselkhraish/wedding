@@ -98,7 +98,7 @@ class VendorController extends Controller
             ]);
         }
 
-        return Redirect::route('admin.vendor.index')->with('success','تم  تعديل المنتج بنجاح');
+        return Redirect::route('admin.vendor.index')->with('success','تم  التعديل بنجاح');
     }
 
     /**
@@ -107,5 +107,14 @@ class VendorController extends Controller
     public function destroy(string $id)
     {
         return view('errors.notfound');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        $vendor = Vendor::where('name', 'LIKE', "%{$keyword}%")->get();
+
+        return view('admin.vendor.search-results', ['vendor' => $vendor]);
     }
 }

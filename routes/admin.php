@@ -20,6 +20,8 @@ Route::prefix('/admin')->middleware(['auth','CheckUserStatusMiddleware'])->name(
 
     // Vendor
     Route::resource('vendor', VendorController::class);
+    Route::get('/search', [VendorController::class,'search'])->name('search');
+
 
     // Note
     Route::get('/notes',[AdminController::class,'note'])->name('note');

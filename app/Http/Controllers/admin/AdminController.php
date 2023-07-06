@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Note;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\User;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +15,12 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
     function index() {
-        return view('admin.index');
+        $products = Product::all();
+        $categories = Category::all();
+        $order = Order::where('status','accepted')->get();
+        $vendor = Vendor::where('status','accepted')->get();
+        $users = User::all();
+        return view('admin.index',compact('products','categories','order','vendor','users'));
     }
 
     function note() {

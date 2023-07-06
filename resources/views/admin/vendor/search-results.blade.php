@@ -120,7 +120,6 @@
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
-                            {{ $vendor->links() }}
                             <!--end::Table-->
                         </div>
                         <!--end::Table container-->
