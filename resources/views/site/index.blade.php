@@ -218,16 +218,25 @@
             <div class="col-md-6 col-12 py-5">
                 <div class="text-center mb-2 pb-2">
                     <h2 class="section-title px-5 mb-3"><span class="bg-secondary px-2">تابع كل التحديثات</span></h2>
-                    <p>يمكنك متابعة كل الأخبار المتعلقة في موقعنا , و يمكنك متابعتها عن طريق الجيميل</p>
+                    <p>تابعنا وتابع كل أخبارنا عن طريق روابط حساباتنا التالية</p>
                 </div>
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control border-white p-4" placeholder="ايميلك؟">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary px-4">اشتراك</button>
-                        </div>
-                    </div>
-                </form>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-dark px-2" href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-dark pl-2" href="">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
