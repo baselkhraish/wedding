@@ -19,5 +19,6 @@ class Product extends Model
     function order() {
         return $this->belongsTo(Order::class);
     }
+    
 
 }

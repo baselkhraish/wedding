@@ -8,7 +8,7 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">الخدمات</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">  </h1>
             <div class="d-inline-flex">
                 <p class="m-0"><a href="{{ route('home') }}">الرئيسية</a></p>
                 <p class="m-0 px-2">-</p>
@@ -41,7 +41,7 @@
                             </form>
                         </div>
                     </div>
-                    @foreach ($products as $item)
+                    @foreach ($results as $item)
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">

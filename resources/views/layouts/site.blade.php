@@ -33,11 +33,11 @@
         <div class="row bg-secondary py-2 px-xl-5">
             <div class="col-lg-6 d-none d-lg-block" style="text-align:right;">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark" href="">FAQs</a>
+                    <a class="text-dark" href="https://wa.me/970597814587">اقتراح جديد</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Help</a>
+                    <a class="text-dark" href="https://wa.me/970597814587">مساعدة</a>
                     <span class="text-muted px-2">|</span>
-                    <a class="text-dark" href="">Support</a>
+                    <a class="text-dark" href="https://wa.me/970597814587">الدعم الفني</a>
                 </div>
             </div>
             <div class="col-lg-6 text-center text-lg-left">
@@ -63,22 +63,25 @@
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 ml-1">E</span>Shopper</h1>
+                    <h1 class="m-0 display-5 font-weight-semi-bold text-right"><span class="text-primary font-weight-bold border px-3 ml-1">إدارة</span>الزفاف</h1>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+
+                <form action="{{ route('search') }}" method="GET">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" value="{{ request()->keyword }}" placeholder="ابحث الخدمة التي تريدها"  name="keyword">
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
+
+                            <button type="submit" class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
+
             </div>
-            <div class="col-lg-3 col-6 text-right">
+            {{-- <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
@@ -87,7 +90,7 @@
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!-- Topbar End -->
@@ -106,65 +109,64 @@
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pl-3 pl-xl-5">
                 <a href="" class="text-decoration-none">
-                    <h1 class="mb-4 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border border-white px-3 ml-1">E</span>Shopper</h1>
+                    <h1 class="mb-4 display-5 font-weight-semi-bold text-right"><span class="text-primary font-weight-bold border border-white px-3 ml-1">إدارة</span> الزفاف </h1>
                 </a>
-                <p>Dolore erat dolor sit lorem vero amet. Sed sit lorem magna, ipsum no sit erat lorem et magna ipsum dolore amet erat.</p>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary ml-3"></i>123 Street, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-envelope text-primary ml-3"></i>info@example.com</p>
-                <p class="mb-0"><i class="fa fa-phone-alt text-primary ml-3"></i>+012 345 67890</p>
+                <p>
+
+                </p>
+                <p class="mb-2 text-right"><i class="fa fa-map-marker-alt text-primary ml-3"></i>فلسطين - غزة</p>
+                <p class="mb-2 text-right"><i class="fa fa-envelope text-primary ml-3"></i>wedding-planner@gmail.com</p>
+                <p class="mb-0 text-right"><i class="fa fa-phone-alt text-primary ml-3"></i>+970597814587</p>
             </div>
             <div class="col-lg-8 col-md-12">
                 <div class="row">
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-dark mb-4  text-right">روابط سريعة</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.html">Home<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="shop.html">Our Shop<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="detail.html">Shop Detail<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="cart.html">Shopping Cart<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="checkout.html">Checkout<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark" href="contact.html">Contact Us<i class="fa fa-angle-left mr-2"></i></a>
+                            <a class="text-dark mb-2  text-right" href="{{ route('home') }}">الرئيسية<i class="fa fa-angle-left mr-2"></i></a>
+                            <a class="text-dark mb-2  text-right" href="{{ route('category') }}">الأقسام<i class="fa fa-angle-left mr-2"></i></a>
+                            <a class="text-dark mb-2  text-right" href="{{ route('vendor') }}">المحلات<i class="fa fa-angle-left mr-2"></i></a>
+                            <a class="text-dark mb-2  text-right" href="{{ route('products') }}">الخدمات<i class="fa fa-angle-left mr-2"></i></a>
                         </div>
                     </div>
+
+                    @php
+                        $category = App\Models\Category::orderByDesc('id')->take(4)->get();
+                    @endphp
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
+                        <h5 class="font-weight-bold text-dark mb-4  text-right">أحدث الأقسام</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.html">Home<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="shop.html">Our Shop<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="detail.html">Shop Detail<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="cart.html">Shopping Cart<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark mb-2" href="checkout.html">Checkout<i class="fa fa-angle-left mr-2"></i></a>
-                            <a class="text-dark" href="contact.html">Contact Us<i class="fa fa-angle-left mr-2"></i></a>
+                            @foreach ($category as $item)
+                                <a class="text-dark mb-2  text-right" href="{{ route('category.product',$item->id) }}">{{ $item->name }}<i class="fa fa-angle-left mr-2"></i></a>
+                            @endforeach
                         </div>
                     </div>
+
+
+                    @php
+                        $vendor = App\Models\Vendor::inRandomOrder('id')->whereNotNull('name')->take(4)->get();
+                    @endphp
                     <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
+                        <h5 class="font-weight-bold text-dark mb-4  text-right">أحدث المحلات</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            @foreach ($vendor as $item)
+                                <a class="text-dark mb-2  text-right" href="{{ route('vendor.product',$item->id) }}">{{ $item->name }}<i class="fa fa-angle-left mr-2"></i></a>
+                            @endforeach
+                        </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
         <div class="row border-top border-light mx-xl-5 py-4">
-            <div class="col-md-6 px-xl-0">
-                <p class="mb-md-0 text-center text-md-left text-dark">
-                    &copy; <a class="text-dark font-weight-semi-bold" href="#">Your Site Name</a>. All Rights Reserved.
+            <div class="col-md-12 px-xl-0">
+                <p class="mb-md-0 text-center text-center text-dark">
+                    &copy; <a class="text-dark font-weight-semi-bold" href="{{ route('home') }}">ادارة مناسبات الزفاف</a>. جميع الحقوق محفوظة.
 
-					Designed by <a class="text-dark font-weight-semi-bold" href="https://htmlcodex.com">HTML Codex</a>
+					تم تصميمه بواسطة <a class="text-dark font-weight-semi-bold" target="_blank" href="https://linktr.ee/basel_khraish">م.باسل خريش</a>
                 </p>
-            </div>
-            <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img class="img-fluid" src="{{ asset('siteasset/img/payments.png') }}" alt="">
             </div>
         </div>
     </div>

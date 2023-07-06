@@ -33,6 +33,12 @@ Route::get('/product/{product}',[SiteController::class,'product_details'])->name
 // Reservation
 Route::post('/reservation',[SiteController::class,'reservation'])->name('reservation')->middleware('auth');
 
+// Search
+Route::get('/search', [SiteController::class,'search'])->name('search');
+
+
+// Route::get('/product/search', [SiteController::class,'products'])->name('product.search');
+
 
 
 

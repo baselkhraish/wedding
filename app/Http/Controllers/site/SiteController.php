@@ -12,7 +12,7 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use Termwind\Components\Dd;
 
 class SiteController extends Controller
 {
@@ -41,12 +41,12 @@ class SiteController extends Controller
 
     function category_vendor($id) {
         $category = Category::findOrFail($id);
-        $vendor = Vendor::with('category')->where('category_id',$category->id)->get();
+        $vendor = Vendor::with('category')->where('category_id',$category->id)->whereNotNull('name')->get();
         return view('site.category-vendor',compact('vendor','category'));
     }
 
     function vendor() {
-        $vendor = Vendor::orderBy('id','Desc')->get();
+        $vendor = Vendor::orderBy('id','Desc')->whereNotNull('name')->get();
         return view('site.vendor',compact('vendor'));
     }
 
@@ -100,4 +100,16 @@ class SiteController extends Controller
 
     }
 
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+
+        // Perform the search keyword on your model
+        $results = Product::where('name', 'LIKE', "%{$keyword}%")
+            ->orWhere('description', 'LIKE', "%{$keyword}%")
+            ->get();
+
+        return view('site.search-results', ['results' => $results]);
+    }
 }
