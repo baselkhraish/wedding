@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <title>{{ env('APP_NAME') }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
+    <meta content="ادارة حفل الزفاف" name="keywords">
+    <meta content="Free HTML Templates" name="يهتم موقعنا بإدارة حفلات الزفاف في قطاع غزة و يسهل على العرسان الوصول إلى كل المحلات في موقعنا , نهتم أيضاً بتوفير وقتكم و جهدكم">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{ asset('siteasset/logo.png') }}" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
