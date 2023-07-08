@@ -566,16 +566,30 @@
             <!--end::Search-->
         </div>
         <!--end::Search-->
-
+        @php
+            $user_id = Auth::id();
+            $user_image = App\Models\UserDetails::where('user_id',$user_id)->first();
+        @endphp
+        {{-- @dump($user_image->id) --}}
         <!--begin::User menu-->
         <div class="d-flex align-items-center ms-1 ms-lg-3" id="kt_header_user_menu_toggle">
             <!--begin::Menu wrapper-->
-            <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
-                data-kt-menu-trigger="click" data-kt-menu-attach="parent"
-                data-kt-menu-placement="bottom-end">
-                <img src="{{ asset('adminasset/assets/media/avatars/300-1.jpg') }}"
-                    alt="user" />
-            </div>
+
+            @if(Auth::user()->status == 'vendor')
+                <div class="cursor-pointer symbol symbol-30px symbol-md-40px"
+                    data-kt-menu-trigger="click" data-kt-menu-attach="parent"
+                    data-kt-menu-placement="bottom-end">
+                    <img src="{{ asset('uploads/images/setting/'.$user_image->image) }}"
+                        alt="{{ Auth::user()->name }}" />
+                </div>
+            @else
+                <div class="cursor-pointer symbol symbol-30px   symbol-md-40px"
+                    data-kt-menu-trigger="click" data-kt-menu-attach="parent"
+                    data-kt-menu-placement="bottom-end">
+                    <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}"
+                        alt="{{ Auth::user()->name }}" />
+                </div>
+            @endif
             <!--begin::User account menu-->
             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px"
                 data-kt-menu="true">
@@ -583,10 +597,19 @@
                 <div class="menu-item px-3">
                     <div class="menu-content d-flex align-items-center px-3">
                         <!--begin::Avatar-->
+
+                        @if(Auth::user()->status == 'vendor')
+                            <div class="symbol symbol-50px me-5">
+                                <img alt="Logo"
+                                    src="{{ asset('uploads/images/setting/'.$user_image->image) }}" />
+                            </div>
+                        @else
                         <div class="symbol symbol-50px me-5">
                             <img alt="Logo"
-                                src="{{ asset('adminasset/assets/media/avatars/300-1.jpg') }}" />
+                                src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}" />
                         </div>
+                        @endif
+
                         <!--end::Avatar-->
                         <!--begin::Username-->
                         <div class="d-flex flex-column">

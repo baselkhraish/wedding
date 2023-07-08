@@ -20,13 +20,8 @@ class SiteController extends Controller
     function index() {
         $category = Category::with('vendor')->orderBy('created_at','DESC')->where('status','active')->get();
 
-        $product_0 = Category::with(['vendor' => function ($query) {
-            $query->inRandomOrder()->take(8);
-        },'vendor.product' => function ($query) {
-            $query->inRandomOrder();
-        }])->get();
 
-        return view('site.index',compact('category','product_0'));
+        return view('site.index',compact('category'));
     }
 
     function category() {
@@ -73,19 +68,14 @@ class SiteController extends Controller
         // $order = new Order();
         $enteredDate = Carbon::createFromFormat('Y-m-d', $request->input('date'));
 
-        $exists = Order::whereDate('date', $enteredDate)->where('product_id',$request->product_id)->where('status','accepted')->exists();
 
-        if ($exists) {
             return redirect()->back()->with('success','عذراً , هذا اليوم محجوز مسبقاً');
-        } else {
             if ($enteredDate->isToday()) {
                 return redirect()->back()->with('success','عذراً غير مسموح حجز اليوم');
             } elseif ($enteredDate->isFuture()) {
                 Order::create([
                     'user_id'=>Auth::id(),
                     'product_id' => $request->product_id,
-                    'vendor_id'=> $request->vendor_id,
-                    'date' => $request->date,
                     'phone' => $request->phone,
                     'price'=>$request->price,
                 ]);
@@ -94,8 +84,8 @@ class SiteController extends Controller
                 return redirect()->back()->with('success','التاريخ قديم');
             } else {
                 return redirect()->back()->with('success','يرجى ادخال تاريخ صحيح');
+
             }
-        }
 
 
     }
@@ -106,9 +96,9 @@ class SiteController extends Controller
         $keyword = $request->input('keyword');
 
         // Perform the search keyword on your model
-        $results = Product::where('name', 'LIKE', "%{$keyword}%")
-            ->orWhere('description', 'LIKE', "%{$keyword}%")
-            ->get();
+        $results = Product::where('id', 'LIKE', "%{$keywword}%")
+            ->orWhere('description', 'LIKE', "%{$keywword}%")
+            ->first();
 
         return view('site.search-results', ['results' => $results]);
     }
