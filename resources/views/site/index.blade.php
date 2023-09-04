@@ -12,7 +12,7 @@
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px; text-align: right;">
                         @php
-                            $category = App\Models\Category::orderByDesc('id')->take(8)->get();
+                            $category = App\Models\Category::orderByDesc('id')->where('status','active')->take(8)->get();
                         @endphp
 
                         @foreach ($category as $item)
@@ -120,7 +120,7 @@
             <div class="col-lg-4 col-md-6 pb-1">
                 <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
                     <a href="{{ route('category.product',$item->id) }}" class="cat-img position-relative overflow-hidden mb-3" style="height: 250px">
-                        <img class="img-fluid" src="{{ asset('uploads/images/category/'.$item->image) }}" alt="" style="height: 300px; object-fit: contain" >
+                        <img class="img-fluid" src="{{ asset('uploads/images/category/'.$item->image) }}" alt="{{ $item->name }}" title="{{ $item->name }}" style="height: 300px; object-fit: contain" >
                     </a>
                     <div class="d-flex justify-content-between align-items-center p-3">
                         <div><a href="{{ route('category.vendor',$item->id) }}" class="btn btn-primary">مشاهدة كل البائعين</a></div>
@@ -141,7 +141,7 @@
     <div class="container-fluid offer pt-5">
         <div class="row px-xl-5">
             <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                <div class="position-relative bg-secondary text-right text-md-right text-white mb-2 py-3 px-5">
                     <img src="https://images.unsplash.com/photo-1552284696-91da120af7da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="">
                     <div class="position-relative" style="z-index: 1;">
                         <h5 class="text-uppercase text-primary mb-3">الأفضل عربياً والأعلى جودة</h5>
@@ -151,7 +151,7 @@
                 </div>
             </div>
             <div class="col-md-6 pb-4">
-                <div class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                <div class="position-relative bg-secondary text-left text-md-left text-white mb-2 py-3 px-5">
                     <img src="https://images.unsplash.com/photo-1525258946800-98cfd641d0de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80" alt="">
                     <div class="position-relative" style="z-index: 1;">
                         <h5 class="text-uppercase text-primary mb-3"> تقديم الخدمات الأكثر نفعاً</h5>
@@ -178,7 +178,7 @@
                     <div class="card product-item border-0 mb-4">
                         <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
                             <a href="{{ route('product_details',$product->id) }}">
-                                <img class="img-fluid w-100" src="{{ asset('uploads/images/product/'.$product->image) }}" alt="" style="height: 300px; object-fit: contain" >
+                                <img class="img-fluid w-100" src="{{ asset('uploads/images/product/'.$product->image) }}" alt="{{ $product->name }}" title='{{ $product->name }}' style="height: 300px; object-fit: contain" >
                             </a>
                         </div>
                         <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
@@ -186,16 +186,16 @@
                             <a href="{{ route('product_details',$product->id) }}"><h6 class="text-truncate mb-3">{{ $product->name }}</h6></a>
                             <div class="d-flex justify-content-center">
                                 @if($product->sale_price === null)
-                                    <h6>${{ $product->price }}</h6></h6>
+                                    <h6>{{ $product->price }} شيكل</h6></h6>
                                 @else
-                                <h6>${{ $product->sale_price }}</h6><h6 class="text-muted mr-2"><del>${{ $product->price }}</del></h6>
+                                <h6>{{ $product->sale_price }} شيكل</h6><h6 class="text-muted mr-2"><del>{{ $product->price }} شيكل</del></h6>
 
                                 @endif
 
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-center bg-light border">
-                            <a href="{{ route('product_details',$item->id) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary ml-1"></i> المزيد</a>
+                            <a href="{{ route('product_details',$product->id) }}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary ml-1"></i> المزيد</a>
                         </div>
 
                     </div>

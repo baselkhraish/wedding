@@ -26,8 +26,8 @@ Route::get('/category/vendor/{vendor}',[SiteController::class,'category_vendor']
 Route::get('/vendor',[SiteController::class,'vendor'])->name('vendor');
 Route::get('/vendor/product/{product}',[SiteController::class,'vendor_product'])->name('vendor.product');
 
+// Product
 Route::get('/products',[SiteController::class,'products'])->name('products');
-
 Route::get('/product/{product}',[SiteController::class,'product_details'])->name('product_details');
 
 // Reservation

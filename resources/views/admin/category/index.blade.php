@@ -65,8 +65,7 @@
 
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                    <p
-                                                        class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->name }}</p>
+                                                    <p class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->name }}</p>
                                             </div>
                                         </td>
 

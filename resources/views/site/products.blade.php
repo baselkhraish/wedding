@@ -54,7 +54,8 @@
 
                                         <div>المحل :  <a href="{{ route('vendor.product',$item->vendor->id) }}"><span>{{ $item->vendor->name }}</span></a></div>
 
-                                        <div>القسم :  <a href="{{ route('category.product',$item->vendor->category->id) }}"><span>{{ $item->vendor->category->name }}</span></a></div>
+
+                                        {{-- <div>القسم :  <a href="{{ route('category.product',$item->vendor->category->id) }}"><span>{{ $item->vendor->category->name }}</span></a></div> --}}
                                     </div>
                                     <a href="{{ route('product_details',$item->id) }}"><h6 class="text-truncate mb-3">{{ $item->name }}</h6></a>
                                     <div class="d-flex justify-content-center">
