@@ -33,7 +33,7 @@
 
         .mytra-login {
             width: 800px;
-            height: 480px;
+            height: auto;
             display: flex;
 
         }
